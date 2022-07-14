@@ -1,11 +1,13 @@
 import "./App.css";
 import Home from "./pages/home/Home";
+import Profile from "./pages/Profile/Profile";
 function App() {
   return (
     <div className="App">
-      <div className="blur" style={{ top: "36%", left: "-8rem" }}></div>
-      <div className="blur" style={{ top: "-5rem", right: "0%" }}></div>
-      <Home />
+      <div className="blur" style={{ top: "50%", left: "-8rem" }}></div>
+      <div className="blur" style={{ top: "-3rem", right: "0%" }}></div>
+      {/* <Home /> */}
+      <Profile />
     </div>
   );
 }

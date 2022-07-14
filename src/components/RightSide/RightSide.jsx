@@ -4,8 +4,8 @@ import Home from "../../img/home.png";
 import Noti from "../../img/noti.png";
 import Comment from "../../img/comment.png";
 import { UilSetting } from "@iconscout/react-unicons";
-import TrendCard from "../TrendCard/TrendCard";
 import ShareModal from "../ShareModal/ShareModal";
+import TrendCard from "../TrendCard/TrendCard";
 
 const RightSide = () => {
   const [modalOpened, setModalOpened] = useState(false);
