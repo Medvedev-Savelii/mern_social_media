@@ -26,10 +26,10 @@
 .blur{
 	position: absolute;
 	width: 100vh;
-	height: 75%;
+	height: 100vh;
 	border-radius: 50%;
 	background: #a6ddf0;
-	filter: blur(72px)
+	filter: blur(70px)
 }
 
 
