@@ -8,8 +8,8 @@ function App() {
       <div className="blur" style={{ top: "50%", left: "-8rem" }}></div>
       <div className="blur" style={{ top: "-3rem", right: "0%" }}></div>
       {/* <Home /> */}
-      <Profile />
-      {/* <Auth /> */}
+      {/* <Profile /> */}
+      <Auth />
     </div>
   );
 }
