@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./Auth.css";
 import Logo from "../../img/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logIn, singUp } from "../../actions/AuthActions";
 
 const Auth = () => {
   const initialState = {
@@ -13,12 +16,8 @@ const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [data, setData] = useState(initialState);
   const [confirmPass, setConfirmPass] = useState(true);
-
-  // Reset Form
-  const resetForm = () => {
-    setData(initialState);
-    setConfirmPass(true);
-  };
+  const dispatch = useDispatch();
+  //   const navigate = useNavigate();
 
   // handle Change in input
   const handleChange = (e) => {
@@ -27,14 +26,23 @@ const Auth = () => {
 
   // Form Submission
   const handleSubmit = (e) => {
-    e.preventDefault();
     setConfirmPass(true);
+    e.preventDefault();
     if (isSignUp) {
-      if (data.password !== data.confirmpass) {
-        setConfirmPass(false);
-      }
+      data.password === data.confirmpass
+        ? dispatch(singUp(data))
+        : setConfirmPass(false);
+    } else {
+      dispatch(logIn(data));
     }
   };
+
+  // Reset Form
+  const resetForm = () => {
+    setData(initialState);
+    setConfirmPass(true);
+  };
+
   return (
     <div className="Auth">
       {/* Left-Side */}
