@@ -13,6 +13,7 @@ const Auth = () => {
     password: "",
     confirmpass: "",
   };
+  const loading = useSelector((state) => state.authReducer.loading);
   const [isSignUp, setIsSignUp] = useState(false);
   const [data, setData] = useState(initialState);
   const [confirmPass, setConfirmPass] = useState(true);
@@ -137,8 +138,12 @@ const Auth = () => {
                 : "Don't have an account? Sing Up"}{" "}
             </span>
           </div>
-          <button className="button infoButton" type="submit">
-            {isSignUp ? "Sign Up" : "Log In"}
+          <button
+            className="button infoButton"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : isSignUp ? "SignUp" : "Login"}
           </button>
         </form>
       </div>
