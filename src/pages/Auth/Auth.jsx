@@ -59,12 +59,14 @@ const Auth = () => {
                 className="infoInput"
                 name="firstname"
                 onChange={handleChange}
+                value={data.firstname}
               />
               <input
                 type="text"
                 placeholder="Last Name"
                 className="infoInput"
                 name="lastname"
+                value={data.lastname}
                 onChange={handleChange}
               />
             </div>
@@ -76,6 +78,7 @@ const Auth = () => {
               className="infoInput"
               name="username"
               placeholder="Usernames"
+              value={data.username}
               onChange={handleChange}
             />
           </div>
@@ -86,6 +89,7 @@ const Auth = () => {
               className="infoInput"
               name="password"
               placeholder="Password"
+              value={data.password}
               onChange={handleChange}
             />
             {isSignUp && (
@@ -95,6 +99,7 @@ const Auth = () => {
                 name="confirmpass"
                 placeholder="Confirm Password"
                 onChange={handleChange}
+                value={data.confirmpass}
               />
             )}
           </div>
