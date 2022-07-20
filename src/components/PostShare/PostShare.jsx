@@ -7,10 +7,12 @@ import { UilLocationPoint } from "@iconscout/react-unicons";
 import { UilSchedule } from "@iconscout/react-unicons";
 import { UilTimes } from "@iconscout/react-unicons";
 import { useDispatch, useSelector } from "react-redux";
+import { uploadImage, uploadPost } from "../../actions/UploadAction";
 
 const PostShare = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
+  const loading = useSelector((state) => state.postReducer.uploading);
   const { user } = useSelector((state) => state.authReducer.authData);
   const imageRef = useRef();
   const desc = useRef();
@@ -39,10 +41,21 @@ const PostShare = () => {
       data.append("name", fileName);
       data.append("file", image);
       newPost.image = fileName;
-      console.log(newPost);
+      try {
+        dispatch(uploadImage(data));
+      } catch (error) {
+        console.log(error);
+      }
     }
+    dispatch(uploadPost(newPost));
+    resetShare();
   };
 
+  // Reset Post Share
+  const resetShare = () => {
+    setImage(null);
+    desc.current.value = "";
+  };
   return (
     <div className="PostShare">
       <img src={ProfileImage} alt="" />
@@ -73,8 +86,12 @@ const PostShare = () => {
             Shedule
           </div>
 
-          <button className="button ps-button" onClick={handleUpload}>
-            Share
+          <button
+            className="button ps-button"
+            onClick={handleUpload}
+            disabled={loading}
+          >
+            {loading ? "Uploading..." : "Share"}
           </button>
           <div style={{ display: "none" }}>
             <input
