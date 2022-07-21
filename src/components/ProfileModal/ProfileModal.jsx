@@ -23,9 +23,11 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
-      event.target.name === "profileImage"
-        ? setProfileImage(img)
-        : setCoverImage(img);
+      if (event.target.name === "profileImage") {
+        setProfileImage(img);
+      } else {
+        setCoverImage(img);
+      }
     }
   };
 
@@ -134,9 +136,9 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
         </div>
 
         <div>
-          Profile Image
+          Profile image
           <input type="file" name="profileImage" onChange={onImageChange} />
-          Cover Image
+          Cover image
           <input type="file" name="coverImage" onChange={onImageChange} />
         </div>
 
