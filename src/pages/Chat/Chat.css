@@ -1,10 +1,7 @@
-.container {
-	display: flex;
-    justify-content: center;
-    align-items: center; 
-} 
+ 
 
 .Chat {
+
 	position: relative;
 	display: grid;
 	grid-template-columns: 14% auto;
@@ -25,7 +22,7 @@
 	border-radius: 1rem;
 	padding: 1rem;
 	height: auto;
-	min-height: 100vh;
+	min-height: 84vh;
 	overflow: scroll;
   }
   

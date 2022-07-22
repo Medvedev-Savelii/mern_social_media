@@ -14,6 +14,7 @@ const Chat = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
   const [chats, setChats] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
 
   // Get the chat in chat section
   useEffect(() => {
@@ -39,7 +40,7 @@ const Chat = () => {
             {chats.map((chat) => (
               <div
                 onClick={() => {
-                  //   setCurrentChat(chat);
+                  setCurrentChat(chat);
                 }}
               >
                 <Conversation
@@ -61,7 +62,7 @@ const Chat = () => {
           <NavIcons />
         </div>
         {/*Chat Body */}
-        <ChatBox />
+        <ChatBox chat={currentChat} currentUser={user._id} />
       </div>
     </div>
   );
