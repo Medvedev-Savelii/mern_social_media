@@ -19,7 +19,9 @@ const RightSide = () => {
         </Link>
         <UilSetting />
         <img src={Noti} alt="" />
-        <img src={Comment} alt="" />
+        <Link to="/chat">
+          <img src={Comment} alt="" />
+        </Link>
       </div>
 
       <TrendCard />
@@ -27,7 +29,7 @@ const RightSide = () => {
       <button className="button r-button" onClick={() => setModalOpened(true)}>
         Share
       </button>
-      <ShareModal modalOpened={modalOpened} setModalOpened={setModalOpened} />
+      <ShareModal modalOdpened={modalOpened} setModalOpened={setModalOpened} />
     </div>
   );
 };

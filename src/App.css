@@ -19,9 +19,9 @@
 	color: var(--black);
 	background: #f3f3f3;
 	padding: 1rem 1rem;
-	display: flex;
+	/* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
   }
   
   /* blur */
