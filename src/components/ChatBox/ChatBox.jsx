@@ -6,7 +6,7 @@ import { format } from "timeago.js";
 import InputEmoji from "react-input-emoji";
 import "./ChatBox.css";
 
-const ChatBox = ({ chat, currentUser }) => {
+const ChatBox = ({ chat, currentUser, setSendMessage }) => {
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -42,6 +42,27 @@ const ChatBox = ({ chat, currentUser }) => {
 
   const handleChange = (newMessage) => {
     setNewMessage(newMessage);
+  };
+
+  // Send Message
+  const handleSend = async (e) => {
+    e.preventDefault();
+    const message = {
+      senderId: currentUser,
+      text: newMessage,
+      chatId: chat._id,
+    };
+    const receiverId = chat.members.find((id) => id !== currentUser);
+    // send message to socket server
+    setSendMessage({ ...message, receiverId });
+    // send message to database
+    try {
+      const { data } = await addMessage(message);
+      setMessages([...messages, data]);
+      setNewMessage("");
+    } catch {
+      console.log("error");
+    }
   };
 
   return (
@@ -100,8 +121,10 @@ const ChatBox = ({ chat, currentUser }) => {
             {/* chat-sender */}
             <div className="chat-sender">
               <div>+</div>
-              <InputEmoji value={newMessage} />
-              <div className="send-button button">Send</div>
+              <InputEmoji value={newMessage} onChange={handleChange} />
+              <div className="send-button button" onClick={handleSend}>
+                Send
+              </div>
               <input type="file" name="" id="" style={{ display: "none" }} />
             </div>{" "}
           </>
