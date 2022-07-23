@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../api/UserRequests";
 
-const Coversation = ({ data, currentUserId }) => {
+const Coversation = ({ data, currentUserId, online }) => {
   const dispatch = useDispatch();
   const [userData, setUserData] = useState(null);
   useEffect(() => {
@@ -24,7 +24,7 @@ const Coversation = ({ data, currentUserId }) => {
     <>
       <div className="follower conversation">
         <div>
-          <div className="online-dot"></div>
+          {online && <div className="online-dot"></div>}
           <img
             src={
               userData?.profilePicture
@@ -39,7 +39,7 @@ const Coversation = ({ data, currentUserId }) => {
             <span>
               {userData?.firstname} {userData?.lastname}
             </span>
-            <span style={{ color: "#51e200" }}>"Online"</span>
+            <span style={{ color: "#51e200" }}>{online ? "Online" : ""}</span>
           </div>
         </div>
       </div>

@@ -42,12 +42,26 @@ const Chat = () => {
     });
   }, [user]);
 
+  // Get the message from socket server
+  useEffect(() => {
+    socket.current.on("recieve-message", (data) => {
+      console.log(data);
+      setReceivedMessage(data);
+    });
+  }, []);
+
   // Send Message to socket server
   useEffect(() => {
     if (sendMessage !== null) {
       socket.current.emit("send-message", sendMessage);
     }
   }, [sendMessage]);
+
+  const checkOnlineStatus = (chat) => {
+    const chatMember = chat.members.find((member) => member !== user._id);
+    const online = onlineUsers.find((user) => user.userId === chatMember);
+    return online ? true : false;
+  };
 
   return (
     <div className="Chat">
@@ -66,7 +80,7 @@ const Chat = () => {
                 <Conversation
                   data={chat}
                   currentUserId={user._id}
-                  //   online={checkOnlineStatus(chat)}
+                  online={checkOnlineStatus(chat)}
                 />
               </div>
             ))}
@@ -86,6 +100,7 @@ const Chat = () => {
           chat={currentChat}
           currentUser={user._id}
           setSendMessage={setSendMessage}
+          receivedMessage={receivedMessage}
         />
       </div>
     </div>
